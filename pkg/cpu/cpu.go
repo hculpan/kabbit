@@ -148,6 +148,18 @@ func (c *Cpu) Step() error {
 		if err := c.push(total); err != nil {
 			return err
 		}
+	case opcodes.MINC:
+		if param >= int32(c.heapSize) {
+			return errors.New(fmt.Sprintf("invalid memory location %d", param))
+		}
+
+		c.Heap[param] += 1
+	case opcodes.MDEC:
+		if param >= int32(c.heapSize) {
+			return errors.New(fmt.Sprintf("invalid memory location %d", param))
+		}
+
+		c.Heap[param] -= 1
 	case opcodes.DEC:
 		v, err := c.pop()
 		if err != nil {
