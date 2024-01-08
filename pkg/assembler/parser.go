@@ -90,7 +90,7 @@ func parseInstruction(l *Lexer, currToken *Token) (Node, error) {
 		return nil, err
 	}
 
-	if instr.Pseudoop {
+	if instr.Dataop {
 		dataNode := &DataNode{
 			DataType: currToken.Literal,
 			Value:    operand,

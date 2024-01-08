@@ -10,6 +10,7 @@
 dist/
 .DS_Store
 .vscode
+*.kbx
 
 # Test binary, built with `go test -c`
 *.test
