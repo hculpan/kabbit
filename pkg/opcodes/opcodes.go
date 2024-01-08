@@ -35,14 +35,14 @@ const (
 	ISGT  = 51
 	ISGTE = 52
 	HALT  = 0xFFFF
-	W     = 0
+	WD    = 0
 )
 
 type Instruction struct {
 	Pneumonic string
 	Opcode    uint32
 	Param     OperandType
-	Pseudoop  bool
+	Dataop    bool
 }
 
 var opcodes map[string]Instruction = map[string]Instruction{
@@ -59,7 +59,7 @@ var opcodes map[string]Instruction = map[string]Instruction{
 	"jmp":     {Pneumonic: "jmp", Opcode: 10, Param: INT32},
 	"jif":     {Pneumonic: "jif", Opcode: 11, Param: INT32},
 	"out":     {Pneumonic: "out", Opcode: 20, Param: NONE},
-	"in":      {Pneumonic: "in", Opcode: 21, Param: INT32},
+	"in":      {Pneumonic: "in", Opcode: 21, Param: NONE},
 	"st":      {Pneumonic: "st", Opcode: 30, Param: INT32},
 	"ld":      {Pneumonic: "ld", Opcode: 31, Param: INT32},
 	"and":     {Pneumonic: "and", Opcode: 40, Param: NONE},
@@ -69,7 +69,7 @@ var opcodes map[string]Instruction = map[string]Instruction{
 	"isgt":    {Pneumonic: "isgt", Opcode: 51, Param: NONE},
 	"isgte":   {Pneumonic: "isgte", Opcode: 52, Param: NONE},
 	"halt":    {Pneumonic: "halt", Opcode: 0xFFFF, Param: NONE},
-	"w":       {Pneumonic: "w", Opcode: 0, Param: INT32, Pseudoop: true},
+	"wd":      {Pneumonic: "wd", Opcode: 0, Param: INT32, Dataop: true},
 }
 
 func GetPneumonic(opcode uint32) string {

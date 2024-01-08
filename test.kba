@@ -1,20 +1,22 @@
 ; This is a simple program
-num1:   w       5
-num2:   w       0
+num1:   wd      5
+num2:   wd      0
 
-        ld      num1
+        in
 
 start_loop:
         dup
-        out
-        dup
-        jif     dec
+        jif     add_number
         jmp     end
 
-dec:
+add_number:
         dec
+        ld      num2
+        inc
+        dup
+        out
+        st      num2
         jmp     start_loop
 
 end:
         halt
-

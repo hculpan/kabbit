@@ -1,8 +1,12 @@
 package cpu
 
 import (
+	"bufio"
 	"errors"
 	"fmt"
+	"os"
+	"strconv"
+	"strings"
 
 	"github.com/hculpan/kabbit/pkg/executable"
 	"github.com/hculpan/kabbit/pkg/opcodes"
@@ -100,6 +104,14 @@ func (c *Cpu) Step() error {
 		}
 
 		fmt.Println(v)
+	case opcodes.IN:
+		var num int32 = 0
+		if v, err := readInteger("-> "); err == nil {
+			num = int32(v)
+		}
+		if err := c.push(num); err != nil {
+			return err
+		}
 	case opcodes.ST:
 		if param >= int32(c.heapSize) {
 			return errors.New(fmt.Sprintf("invalid memory location %d", param))
@@ -243,4 +255,25 @@ func (c *Cpu) push(v int32) error {
 	c.StackPointer++
 
 	return nil
+}
+
+func readInteger(prompt string) (int32, error) {
+	reader := bufio.NewReader(os.Stdin)
+	var number int32
+	for {
+		fmt.Print(prompt)
+		input, err := reader.ReadString('\n')
+		if err != nil {
+			return 0, err
+		}
+
+		input = strings.TrimSpace(input)
+		n, err := strconv.Atoi(input)
+		if err == nil {
+			number = int32(n)
+			break
+		}
+	}
+
+	return number, nil
 }
