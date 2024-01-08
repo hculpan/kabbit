@@ -132,7 +132,8 @@ func (c *Cpu) Step() error {
 		if err := c.push(v); err != nil {
 			return err
 		}
-	case opcodes.ADD, opcodes.SUB, opcodes.MUL, opcodes.DIV, opcodes.AND, opcodes.OR, opcodes.XOR:
+	case opcodes.ADD, opcodes.SUB, opcodes.MUL, opcodes.DIV, opcodes.AND, opcodes.OR, opcodes.XOR,
+		opcodes.ISEQ, opcodes.ISGT, opcodes.ISGTE, opcodes.ISLT, opcodes.ISLTE:
 		v1, err := c.pop()
 		if err != nil {
 			return err
@@ -202,6 +203,36 @@ func (c *Cpu) Step() error {
 
 func (c *Cpu) binaryOp(opcode int32, v1 int32, v2 int32) int32 {
 	switch opcode {
+	case opcodes.ISEQ:
+		if v1 == v2 {
+			return 1
+		} else {
+			return 0
+		}
+	case opcodes.ISGT:
+		if v1 > v2 {
+			return 1
+		} else {
+			return 0
+		}
+	case opcodes.ISGTE:
+		if v1 >= v2 {
+			return 1
+		} else {
+			return 0
+		}
+	case opcodes.ISLT:
+		if v1 < v2 {
+			return 1
+		} else {
+			return 0
+		}
+	case opcodes.ISLTE:
+		if v1 <= v2 {
+			return 1
+		} else {
+			return 0
+		}
 	case opcodes.ADD:
 		return v1 + v2
 	case opcodes.SUB:

@@ -1,16 +1,15 @@
 ; This is a simple program
-num1:   wd      5
 num2:   wd      0
 
         in
 
 start_loop:
         dup
-        jif     add_number
-        jmp     end
+        ld      num2
+        iseq
+        jif     end
 
 add_number:
-        dec
         ld      num2
         inc
         dup

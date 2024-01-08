@@ -34,6 +34,8 @@ const (
 	ISEQ  = 50
 	ISGT  = 51
 	ISGTE = 52
+	ISLT  = 53
+	ISLTE = 54
 	HALT  = 0xFFFF
 	WD    = 0
 )
@@ -68,6 +70,8 @@ var opcodes map[string]Instruction = map[string]Instruction{
 	"iseq":    {Pneumonic: "iseq", Opcode: 50, Param: NONE},
 	"isgt":    {Pneumonic: "isgt", Opcode: 51, Param: NONE},
 	"isgte":   {Pneumonic: "isgte", Opcode: 52, Param: NONE},
+	"islt":    {Pneumonic: "islt", Opcode: 53, Param: NONE},
+	"islte":   {Pneumonic: "islte", Opcode: 54, Param: NONE},
 	"halt":    {Pneumonic: "halt", Opcode: 0xFFFF, Param: NONE},
 	"wd":      {Pneumonic: "wd", Opcode: 0, Param: INT32, Dataop: true},
 }
