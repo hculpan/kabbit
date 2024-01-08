@@ -65,8 +65,8 @@ func Monitor(c *cpu.Cpu, lastError *error) {
 		}
 	}
 
-	fmt.Printf("  IP:%08X    SP:%08X    %-10s    Stack: [%-28s]    Mem:(%s)\n",
-		c.InstructionPointer, c.StackPointer, decode(c.Code[c.InstructionPointer], c.Code[c.InstructionPointer+1]), stack, mem)
+	fmt.Printf("  IP:%08X    %-10s    SP:%08X  Stack: [%-28s]    Mem:(%s)\n",
+		c.InstructionPointer, decode(c.Code[c.InstructionPointer], c.Code[c.InstructionPointer+1]), c.StackPointer, stack, mem)
 }
 
 func disassembleFile(ef *executable.ExecutableFile) error {

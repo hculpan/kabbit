@@ -10,11 +10,9 @@ start_loop:
         jif     end
 
 add_number:
-        ld      num2
-        inc
-        dup
-        out
         minc    num2
+        ld      num2
+        out
         jmp     start_loop
 
 end:
