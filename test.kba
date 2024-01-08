@@ -14,7 +14,7 @@ add_number:
         inc
         dup
         out
-        st      num2
+        minc    num2
         jmp     start_loop
 
 end:

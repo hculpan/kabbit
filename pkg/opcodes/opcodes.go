@@ -36,6 +36,8 @@ const (
 	ISGTE = 52
 	ISLT  = 53
 	ISLTE = 54
+	MINC  = 60
+	MDEC  = 61
 	HALT  = 0xFFFF
 	WD    = 0
 )
@@ -72,6 +74,8 @@ var opcodes map[string]Instruction = map[string]Instruction{
 	"isgte":   {Pneumonic: "isgte", Opcode: 52, Param: NONE},
 	"islt":    {Pneumonic: "islt", Opcode: 53, Param: NONE},
 	"islte":   {Pneumonic: "islte", Opcode: 54, Param: NONE},
+	"minc":    {Pneumonic: "minc", Opcode: 60, Param: INT32},
+	"mdec":    {Pneumonic: "mdec", Opcode: 61, Param: INT32},
 	"halt":    {Pneumonic: "halt", Opcode: 0xFFFF, Param: NONE},
 	"wd":      {Pneumonic: "wd", Opcode: 0, Param: INT32, Dataop: true},
 }
