@@ -132,6 +132,26 @@ func (c *Cpu) Step() error {
 		if err := c.push(v); err != nil {
 			return err
 		}
+	case opcodes.STI:
+		if param+c.Heap[0] >= int32(c.heapSize) {
+			return errors.New(fmt.Sprintf("invalid memory location %d", param))
+		}
+
+		v, err := c.pop()
+		if err != nil {
+			return err
+		}
+
+		c.Heap[param+c.Heap[0]] = v
+	case opcodes.LDI:
+		if param+c.Heap[0] >= int32(c.heapSize) {
+			return errors.New(fmt.Sprintf("invalid memory location %d", param))
+		}
+
+		v := c.Heap[param+c.Heap[0]]
+		if err := c.push(v); err != nil {
+			return err
+		}
 	case opcodes.ADD, opcodes.SUB, opcodes.MUL, opcodes.DIV, opcodes.AND, opcodes.OR, opcodes.XOR,
 		opcodes.ISEQ, opcodes.ISGT, opcodes.ISGTE, opcodes.ISLT, opcodes.ISLTE:
 		v1, err := c.pop()
@@ -178,6 +198,10 @@ func (c *Cpu) Step() error {
 		if err := c.push(v); err != nil {
 			return err
 		}
+	case opcodes.DECI:
+		c.Heap[0]--
+	case opcodes.INCI:
+		c.Heap[0]++
 	case opcodes.JMP:
 		if param < int32(c.codeSize) {
 			c.InstructionPointer = int(param)
