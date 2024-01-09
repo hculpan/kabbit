@@ -9,7 +9,7 @@ import (
 
 func Generate(nodes []Node, debugInfo bool) ([]int32, []int32, error) {
 	code := []int32{}
-	data := []int32{}
+	data := []int32{0}
 
 	if debugInfo {
 		fmt.Println("\nAST:")
@@ -72,7 +72,7 @@ func getOperandValue(operand string, lineNo int) (int32, error) {
 
 func pass1(nodes []Node) error {
 	codeLoc := 0
-	dataLoc := 0
+	dataLoc := 1
 	for idx, node := range nodes {
 		switch n := node.(type) {
 		case *DataNode:

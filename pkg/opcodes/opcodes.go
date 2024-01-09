@@ -28,6 +28,8 @@ const (
 	IN    = 21
 	ST    = 30
 	LD    = 31
+	STI   = 32
+	LDI   = 33
 	AND   = 40
 	OR    = 41
 	XOR   = 42
@@ -38,6 +40,8 @@ const (
 	ISLTE = 54
 	MINC  = 60
 	MDEC  = 61
+	INCI  = 62
+	DECI  = 63
 	HALT  = 0xFFFF
 	WD    = 0
 )
@@ -66,6 +70,8 @@ var opcodes map[string]Instruction = map[string]Instruction{
 	"in":      {Pneumonic: "in", Opcode: 21, Param: NONE},
 	"st":      {Pneumonic: "st", Opcode: 30, Param: INT32},
 	"ld":      {Pneumonic: "ld", Opcode: 31, Param: INT32},
+	"sti":     {Pneumonic: "sti", Opcode: 32, Param: INT32},
+	"ldi":     {Pneumonic: "ldi", Opcode: 33, Param: INT32},
 	"and":     {Pneumonic: "and", Opcode: 40, Param: NONE},
 	"or":      {Pneumonic: "or", Opcode: 41, Param: NONE},
 	"xor":     {Pneumonic: "xor", Opcode: 42, Param: NONE},
@@ -76,6 +82,8 @@ var opcodes map[string]Instruction = map[string]Instruction{
 	"islte":   {Pneumonic: "islte", Opcode: 54, Param: NONE},
 	"minc":    {Pneumonic: "minc", Opcode: 60, Param: INT32},
 	"mdec":    {Pneumonic: "mdec", Opcode: 61, Param: INT32},
+	"inci":    {Pneumonic: "inci", Opcode: 62, Param: NONE},
+	"deci":    {Pneumonic: "deci", Opcode: 63, Param: NONE},
 	"halt":    {Pneumonic: "halt", Opcode: 0xFFFF, Param: NONE},
 	"wd":      {Pneumonic: "wd", Opcode: 0, Param: INT32, Dataop: true},
 }

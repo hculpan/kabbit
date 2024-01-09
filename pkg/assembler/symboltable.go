@@ -5,7 +5,12 @@ import (
 	"fmt"
 )
 
-var symbolTable map[string]int32 = make(map[string]int32)
+var symbolTable map[string]int32
+
+func init() {
+	symbolTable = make(map[string]int32)
+	symbolTable["index"] = 0
+}
 
 func AddSymbol(name string, value int32) error {
 	_, ok := symbolTable[name]
