@@ -1,19 +1,23 @@
 ; This simple program gets a number from the user, then loops this
 ; many times, printing out each digit as it goes
-num2:   wd      0
-
-        in
-
+num1:           wd      0
+num2:           wd      0
+num3:           wd      0
+loop_count:     wd      0
+        
 start_loop:
+        ld      loop_count
         dup
-        ld      num2
+        push    3
         iseq
         jif     end
 
-add_number:
-        minc    num2
-        ld      num2
-        out
+        inc
+        st      loop_count
+
+        push    3
+        sti     num1
+        inci    
         jmp     start_loop
 
 end:
